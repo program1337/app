@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ELITE STARS STORE</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        body { background-color: #0e0e0e; color: white; font-family: sans-serif; text-align: center; padding: 15px; }
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 20px; }
+        .card { background: #1a1a1a; padding: 15px; border-radius: 12px; border: 1px solid #333; text-decoration: none; color: white; font-size: 14px; font-weight: bold; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        .card:active { background: #222; transform: scale(0.98); border-color: #0088cc; }
+        .full-width { grid-column: span 2; }
+        .icon { font-size: 24px; margin-bottom: 8px; }
+        .header { margin-bottom: 20px; }
+        .logo { width: 70px; border-radius: 50%; border: 2px solid #0088cc; }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <img src="https://telegra.ph/file/logo.jpg" class="logo">
+        <h2 style="margin: 10px 0 5px 0;">ELITE STARS 🌟</h2>
+    </div>
+
+    <div class="grid">
+        <a href="https://t.me/EliteStarsDZ_bot?start=ccp" class="card">
+            <span class="icon">🏛️</span> شراء نجوم (CCP)
+        </a>
+        <a href="https://t.me/EliteStarsDZ_bot?start=flexy" class="card">
+            <span class="icon">📱</span> شراء نجوم (Flexy)
+        </a>
+        <a href="https://t.me/EliteStarsDZ_bot?start=premium" class="card full-width">
+            <span class="icon">💎</span> اشتراك تلغرام Premium
+        </a>
+        <a href="https://t.me/EliteStarsDZ_bot?start=info" class="card">
+            <span class="icon">💳</span> معلومات الدفع
+        </a>
+        <a href="https://t.me/Elitestarproofs" class="card">
+            <span class="icon">🤗</span> إثباتات الضمان
+        </a>
+        <a href="https://t.me/EliteStarsDZ_bot?start=how" class="card full-width">
+            <span class="icon">✅</span> كيف اطلب عرضاً من Elitestars
+        </a>
+        <a href="https://t.me/your_username" class="card full-width" style="background: #0088cc;">
+            <span class="icon">📞</span> التواصل مع الدعم
+        </a>
+    </div>
+
+    <script>
+        const tele = window.Telegram.WebApp;
+        tele.expand();
+    </script>
+</body>
+</html>
