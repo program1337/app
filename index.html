@@ -1,55 +1,49 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ELITE STARS STORE</title>
+    <title>Elite Stars Store</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
-        body { background-color: #0e0e0e; color: white; font-family: sans-serif; text-align: center; padding: 15px; }
-        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 20px; }
-        .card { background: #1a1a1a; padding: 15px; border-radius: 12px; border: 1px solid #333; text-decoration: none; color: white; font-size: 14px; font-weight: bold; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-        .card:active { background: #222; transform: scale(0.98); border-color: #0088cc; }
-        .full-width { grid-column: span 2; }
-        .icon { font-size: 24px; margin-bottom: 8px; }
-        .header { margin-bottom: 20px; }
-        .logo { width: 70px; border-radius: 50%; border: 2px solid #0088cc; }
+        body { font-family: Arial, sans-serif; background-color: #000; color: #fff; text-align: center; padding: 20px; direction: rtl; }
+        .btn { display: block; width: 90%; margin: 10px auto; padding: 15px; background: #1a1a1a; color: white; border: 1px solid #333; border-radius: 10px; font-size: 18px; cursor: pointer; transition: 0.3s; }
+        .btn:hover { background: #333; }
+        .price-list { display: none; background: #111; padding: 10px; border-radius: 10px; margin-bottom: 10px; }
+        .offer { padding: 10px; border-bottom: 1px solid #222; cursor: pointer; }
+        .offer:hover { background: #222; }
     </style>
 </head>
 <body>
-
-    <div class="header">
-        <img src="https://telegra.ph/file/logo.jpg" class="logo">
-        <h2 style="margin: 10px 0 5px 0;">ELITE STARS 🌟</h2>
+    <h2>⭐️ متجر ELITE STARS ⭐️</h2>
+    
+    <button class="btn" onclick="toggleOffers('stars-offers')">⭐ شراء نجوم (CCP/Flexy)</button>
+    <div id="stars-offers" class="price-list">
+        <div class="offer" onclick="sendOrder('نجوم', '50 نجمة - 100 دج')">50 نجمة - 100 دج</div>
+        <div class="offer" onclick="sendOrder('نجوم', '100 نجمة - 200 دج')">100 نجمة - 200 دج</div>
+        <div class="offer" onclick="sendOrder('نجوم', '500 نجمة - 900 دج')">500 نجمة - 900 دج</div>
     </div>
 
-    <div class="grid">
-        <a href="https://t.me/EliteStarsDZ_bot?start=ccp" class="card">
-            <span class="icon">🏛️</span> شراء نجوم (CCP)
-        </a>
-        <a href="https://t.me/EliteStarsDZ_bot?start=flexy" class="card">
-            <span class="icon">📱</span> شراء نجوم (Flexy)
-        </a>
-        <a href="https://t.me/EliteStarsDZ_bot?start=premium" class="card full-width">
-            <span class="icon">💎</span> اشتراك تلغرام Premium
-        </a>
-        <a href="https://t.me/EliteStarsDZ_bot?start=info" class="card">
-            <span class="icon">💳</span> معلومات الدفع
-        </a>
-        <a href="https://t.me/Elitestarproofs" class="card">
-            <span class="icon">🤗</span> إثباتات الضمان
-        </a>
-        <a href="https://t.me/EliteStarsDZ_bot?start=how" class="card full-width">
-            <span class="icon">✅</span> كيف اطلب عرضاً من Elitestars
-        </a>
-        <a href="https://t.me/wuldc" التواصل="card full-width" style="background: #0088cc;">
-            <span class="icon">📞</span> التواصل مع الدعم
-        </a>
-    </div>
+    <button class="btn" onclick="window.open('https://t.me/Y_U_S_E_F_1_3', '_blank')">💬 طلب الدعم</button>
+    <button class="btn" onclick="window.open('https://t.me/ELITESTARSDZ', '_blank')">✅ الإثباتات</button>
 
     <script>
-        const tele = window.Telegram.WebApp;
-        tele.expand();
+        let tg = window.Telegram.WebApp;
+        tg.expand();
+
+        function toggleOffers(id) {
+            let el = document.getElementById(id);
+            el.style.display = (el.style.display === 'block') ? 'none' : 'block';
+        }
+
+        function sendOrder(type, detail) {
+            let data = {
+                item: type,
+                offer: detail
+            };
+            // إرسال البيانات للبوت وغلق النافذة
+            tg.sendData(JSON.stringify(data));
+        }
     </script>
 </body>
 </html>
