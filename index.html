@@ -8,47 +8,48 @@
     <style>
         :root { --gold: #FCD535; --black: #050505; --card: #121212; --border: #1a1a1a; --text-gray: #888; }
         body { font-family: 'Inter', sans-serif; background: var(--black); color: white; direction: rtl; margin: 0; padding: 0; overflow-x: hidden; }
-        
-        .header { padding: 30px 20px; text-align: center; border-bottom: 1px solid var(--border); }
-        .logo-text { font-size: 26px; font-weight: 900; color: var(--gold); letter-spacing: 1px; }
-        .trust-tag { font-size: 11px; color: #2ecc71; background: rgba(46, 204, 113, 0.1); padding: 4px 12px; border-radius: 50px; margin-top: 10px; display: inline-block; }
-
-        .tabs { display: flex; padding: 0 10px; border-bottom: 1px solid var(--border); background: #0a0a0a; position: sticky; top: 0; z-index: 100; }
-        .tab { flex: 1; padding: 15px 5px; text-align: center; color: var(--text-gray); font-weight: 600; font-size: 13px; cursor: pointer; border-bottom: 2px solid transparent; }
+        .header { padding: 25px 20px; text-align: center; border-bottom: 1px solid var(--border); }
+        .logo-text { font-size: 28px; font-weight: 900; color: var(--gold); text-transform: uppercase; }
+        .trust-tag { font-size: 11px; color: #2ecc71; background: rgba(46, 204, 113, 0.1); padding: 5px 15px; border-radius: 50px; margin-top: 10px; display: inline-block; border: 1px solid rgba(46, 204, 113, 0.2); }
+        .tabs { display: flex; padding: 0 5px; border-bottom: 1px solid var(--border); background: #0a0a0a; position: sticky; top: 0; z-index: 100; overflow-x: auto; }
+        .tab { flex: 1; min-width: 80px; padding: 15px 5px; text-align: center; color: var(--text-gray); font-weight: 600; font-size: 12px; cursor: pointer; border-bottom: 2px solid transparent; white-space: nowrap; }
         .tab.active { color: var(--gold); border-bottom-color: var(--gold); background: rgba(252, 213, 53, 0.05); }
-
-        .content-section { display: none; padding: 15px; animation: fadeIn 0.3s ease; }
+        .content-section { display: none; padding: 15px; animation: fadeIn 0.3s ease; padding-bottom: 100px; }
         .content-section.active { display: block; }
-
         .elite-card { background: var(--card); border-radius: 14px; margin-bottom: 10px; padding: 16px; display: flex; justify-content: space-between; align-items: center; border: 1px solid var(--border); }
         .card-info { display: flex; align-items: center; gap: 12px; }
-        .card-icon { width: 40px; height: 40px; background: #1a1a1a; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px; border: 1px solid #222; }
-        .card-details .title { font-size: 15px; font-weight: bold; display: block; }
+        .card-icon { width: 42px; height: 42px; background: #1a1a1a; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 20px; border: 1px solid #333; }
+        .card-details .title { font-size: 15px; font-weight: bold; display: block; color: #fff; }
         .card-details .sub { font-size: 10px; color: var(--text-gray); }
         .price-tag { text-align: left; }
         .price { font-size: 16px; font-weight: 800; color: var(--gold); display: block; }
-        .buy-btn { font-size: 10px; background: var(--gold); color: #000; padding: 4px 12px; border-radius: 6px; font-weight: 900; margin-top: 4px; display: inline-block; cursor: pointer; border: none; }
-
+        .buy-btn { font-size: 10px; background: var(--gold); color: #000; padding: 4px 12px; border-radius: 6px; font-weight: 900; margin-top: 5px; border: none; cursor: pointer; }
         .info-box { background: var(--card); border-radius: 15px; padding: 20px; border: 1px solid var(--border); line-height: 1.6; margin-bottom: 15px; }
-        .info-box h3 { color: var(--gold); margin-top: 0; }
+        .info-box h3 { color: var(--gold); margin-top: 0; font-size: 18px; border-bottom: 1px solid #222; padding-bottom: 10px; margin-bottom: 15px; }
         
-        .bottom-bar { position: fixed; bottom: 0; width: 100%; background: rgba(10, 10, 10, 0.95); backdrop-filter: blur(10px); border-top: 1px solid var(--border); display: flex; padding: 10px 0; justify-content: space-around; z-index: 200; }
-        .nav-btn { color: var(--text-gray); text-decoration: none; font-size: 11px; text-align: center; flex: 1; cursor: pointer; background: none; border: none; }
+        /* Payment Styles */
+        .pay-card { background: #0f0f0f; border: 1px solid #222; border-radius: 12px; padding: 15px; margin-bottom: 15px; }
+        .pay-title { color: var(--gold); font-weight: bold; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+        .pay-data { background: #1a1a1a; padding: 12px; border-radius: 8px; border: 1px dashed #444; text-align: center; font-family: monospace; font-size: 16px; color: #fff; position: relative; }
+        .pay-data span { display: block; font-size: 11px; color: var(--text-gray); margin-bottom: 4px; }
+        
+        .bottom-bar { position: fixed; bottom: 0; width: 100%; background: rgba(10, 10, 10, 0.98); backdrop-filter: blur(10px); border-top: 1px solid var(--border); display: flex; padding: 10px 0; justify-content: space-around; z-index: 200; }
+        .nav-btn { color: var(--text-gray); text-decoration: none; font-size: 10px; text-align: center; flex: 1; cursor: pointer; background: none; border: none; }
         .nav-btn.active { color: var(--gold); }
-
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
 
     <div class="header">
-        <div class="logo-text">ELITE <span>STARS</span></div>
+        <div class="logo-text">ELITE STARS</div>
         <div class="trust-tag">🛡️ منصة النخبة الموثوقة 100%</div>
     </div>
 
     <div class="tabs">
         <div class="tab active" onclick="switchTab(event, 'stars')">النجوم ⭐</div>
         <div class="tab" onclick="switchTab(event, 'premium')">البريميوم 💎</div>
+        <div class="tab" onclick="switchTab(event, 'payment')">طرق الدفع 💸</div>
         <div class="tab" onclick="switchTab(event, 'about')">من نحن ✨</div>
     </div>
 
@@ -58,12 +59,24 @@
             <div class="price-tag"><span class="price">400 DA</span><button class="buy-btn">شراء</button></div>
         </div>
         <div class="elite-card" onclick="buy('100 Stars', '780 DA')">
-            <div class="card-info"><div class="card-icon">⭐</div><div class="card-details"><span class="title">100 نجمة</span><span class="sub">توفير 5%</span></div></div>
+            <div class="card-info"><div class="card-icon">⭐</div><div class="card-details"><span class="title">100 نجمة</span><span class="sub">توفير عائلي</span></div></div>
             <div class="price-tag"><span class="price">780 DA</span><button class="buy-btn">شراء</button></div>
         </div>
-        <div class="elite-card" onclick="buy('175 Stars', '1400 DA')">
-            <div class="card-info"><div class="card-icon">⭐</div><div class="card-details"><span class="title">175 نجمة</span><span class="sub">الأكثر مبيلاً</span></div></div>
-            <div class="price-tag"><span class="price">1400 DA</span><button class="buy-btn">شراء</button></div>
+        <div class="elite-card" onclick="buy('200 Stars', '1550 DA')">
+            <div class="card-info"><div class="card-icon">⭐</div><div class="card-details"><span class="title">200 نجمة</span><span class="sub">باقة النخبة</span></div></div>
+            <div class="price-tag"><span class="price">1550 DA</span><button class="buy-btn">شراء</button></div>
+        </div>
+        <div class="elite-card" onclick="buy('300 Stars', '2300 DA')">
+            <div class="card-info"><div class="card-icon">⭐</div><div class="card-details"><span class="title">300 نجمة</span><span class="sub">العرض الأكثر طلباً</span></div></div>
+            <div class="price-tag"><span class="price">2300 DA</span><button class="buy-btn">شراء</button></div>
+        </div>
+        <div class="elite-card" onclick="buy('400 Stars', '3000 DA')">
+            <div class="card-info"><div class="card-icon">⭐</div><div class="card-details"><span class="title">400 نجمة</span><span class="sub">باقة كبار الشخصيات</span></div></div>
+            <div class="price-tag"><span class="price">3000 DA</span><button class="buy-btn">شراء</button></div>
+        </div>
+        <div class="elite-card" onclick="buy('500 Stars', '3700 DA')">
+            <div class="card-info"><div class="card-icon">🔥</div><div class="card-details"><span class="title">500 نجمة</span><span class="sub">عرض الملوك</span></div></div>
+            <div class="price-tag"><span class="price">3700 DA</span><button class="buy-btn">شراء</button></div>
         </div>
     </div>
 
@@ -72,19 +85,54 @@
             <div class="card-info"><div class="card-icon">💎</div><div class="card-details"><span class="title">بريميوم 3 أشهر</span><span class="sub">تفعيل رسمي</span></div></div>
             <div class="price-tag"><span class="price">3800 DA</span><button class="buy-btn">حجز</button></div>
         </div>
+        <div class="elite-card" onclick="buy('Premium 6M', '6500 DA')">
+            <div class="card-info"><div class="card-icon">💎</div><div class="card-details"><span class="title">بريميوم 6 أشهر</span><span class="sub">توفير مذهل</span></div></div>
+            <div class="price-tag"><span class="price">6500 DA</span><button class="buy-btn">حجز</button></div>
+        </div>
+        <div class="elite-card" onclick="buy('Premium 1 Year', '11000 DA')">
+            <div class="card-info"><div class="card-icon">👑</div><div class="card-details"><span class="title">بريميوم سنة كاملة</span><span class="sub">أفضل قيمة</span></div></div>
+            <div class="price-tag"><span class="price">11000 DA</span><button class="buy-btn">حجز</button></div>
+        </div>
+    </div>
+
+    <div id="payment" class="content-section">
+        <div class="info-box">
+            <h3>💸 طرق الدفع المتاحة</h3>
+            
+            <div class="pay-card">
+                <div class="pay-title">📱 فليكسي (Mobilis)</div>
+                <div class="pay-data">
+                    <span>رقم الهاتف:</span>
+                    0549894647
+                </div>
+            </div>
+
+            <div class="pay-card">
+                <div class="pay-title">🏦 الحساب البريدي (CCP)</div>
+                <div class="pay-data" style="text-align: right; font-family: sans-serif;">
+                    <span style="font-size: 10px;">رقم الحساب (CCP):</span>
+                    <b>00223344 / 55</b><br>
+                    <span style="font-size: 10px; margin-top: 8px;">الاسم الكامل:</span>
+                    <b>Wuldc Elite Stars</b>
+                </div>
+            </div>
+
+            <p style="font-size: 12px; color: #888; text-align: center;">بعد الدفع، يرجى إرسال صورة الوصل (Reçu) إلى الدعم لتأكيد طلبك.</p>
+        </div>
     </div>
 
     <div id="about" class="content-section">
         <div class="info-box">
-            <h3>✨ ما هي إليت ستار؟</h3>
-            <p>منصة جزائرية شحن رسمي ومضمون 100%.</p>
+            <h3>✨ خدمة النخبة (Elite)</h3>
+            <p>نحن في <b>Elite Stars</b> نقدم تجربة شحن فريدة وسريعة للجمهور الجزائري. نعتمد على الشحن الرسمي والآمن تماماً لحسابك.</p>
+            <hr style="border: 0; border-top: 1px solid #222; margin: 15px 0;">
+            <p>🛡️ <b>ضمان الثقة:</b> في حال حدوث أي عطل تقني من طرفنا، نضمن لك استرجاع أموالك بالكامل بكل شفافية.</p>
+            <p>⚡ <b>السرعة:</b> معالجة الطلبات تتم في وقت قياسي لا يتعدى 15 دقيقة.</p>
         </div>
     </div>
 
-    <div style="height: 80px;"></div>
-
     <div class="bottom-bar">
-        <div class="nav-btn active" onclick="switchTab(event, 'stars')">🏠<br>الرئيسية</div>
+        <div class="nav-btn active" onclick="switchTab(null, 'stars')">🏠<br>الرئيسية</div>
         <div class="nav-btn" onclick="openSupport()">💬<br>الدعم</div>
         <div class="nav-btn" onclick="window.location.href='https://t.me/Elitestarproofs'">🛡️<br>الضمان</div>
     </div>
@@ -100,13 +148,19 @@
             tabs = document.getElementsByClassName("tab");
             for (i = 0; i < tabs.length; i++) { tabs[i].classList.remove("active"); }
             document.getElementById(tabName).classList.add("active");
-            if (evt) evt.currentTarget.classList.add("active");
+            if (evt) {
+                evt.currentTarget.classList.add("active");
+            } else {
+                // تفعيل التبويب يدوياً عند الحاجة
+                const allTabs = document.querySelectorAll('.tab');
+                allTabs.forEach(t => { if(t.innerText.includes(tabName)) t.classList.add('active'); });
+            }
         }
 
         function buy(name, price) {
             tg.HapticFeedback.impactOccurred('heavy');
             tg.sendData(JSON.stringify({offer: name, price: price}));
-            tg.showAlert("✅ تم استلام طلبك لـ (" + name + ").\nسيتم تأكيد طلبك خلال 15 دقيقة.");
+            tg.showAlert("✅ تم إرسال طلبك لـ " + name + ".\n\nيرجى التوجه لقسم 'طرق الدفع' ثم مراسلة الدعم بالوصل.");
         }
 
         function openSupport() {
