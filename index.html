@@ -1,54 +1,83 @@
-<div class="price-tag"><span class="price">780 DA</span><span class="buy-btn">شراء</span></div>
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>ELITE STARS DZ | OFFICIAL STORE</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        :root { --gold: #FCD535; --black: #050505; --card: #121212; --border: #1a1a1a; --text-gray: #888; }
+        body { font-family: 'Inter', sans-serif; background: var(--black); color: white; direction: rtl; margin: 0; padding: 0; overflow-x: hidden; }
+        
+        .header { padding: 30px 20px; text-align: center; border-bottom: 1px solid var(--border); }
+        .logo-text { font-size: 26px; font-weight: 900; color: var(--gold); letter-spacing: 1px; }
+        .trust-tag { font-size: 11px; color: #2ecc71; background: rgba(46, 204, 113, 0.1); padding: 4px 12px; border-radius: 50px; margin-top: 10px; display: inline-block; }
+
+        .tabs { display: flex; padding: 0 10px; border-bottom: 1px solid var(--border); background: #0a0a0a; position: sticky; top: 0; z-index: 100; }
+        .tab { flex: 1; padding: 15px 5px; text-align: center; color: var(--text-gray); font-weight: 600; font-size: 13px; cursor: pointer; border-bottom: 2px solid transparent; }
+        .tab.active { color: var(--gold); border-bottom-color: var(--gold); background: rgba(252, 213, 53, 0.05); }
+
+        .content-section { display: none; padding: 15px; animation: fadeIn 0.3s ease; }
+        .content-section.active { display: block; }
+
+        .elite-card { background: var(--card); border-radius: 14px; margin-bottom: 10px; padding: 16px; display: flex; justify-content: space-between; align-items: center; border: 1px solid var(--border); }
+        .card-info { display: flex; align-items: center; gap: 12px; }
+        .card-icon { width: 40px; height: 40px; background: #1a1a1a; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px; border: 1px solid #222; }
+        .card-details .title { font-size: 15px; font-weight: bold; display: block; }
+        .card-details .sub { font-size: 10px; color: var(--text-gray); }
+        .price-tag { text-align: left; }
+        .price { font-size: 16px; font-weight: 800; color: var(--gold); display: block; }
+        .buy-btn { font-size: 10px; background: var(--gold); color: #000; padding: 4px 12px; border-radius: 6px; font-weight: 900; margin-top: 4px; display: inline-block; cursor: pointer; border: none; }
+
+        .info-box { background: var(--card); border-radius: 15px; padding: 20px; border: 1px solid var(--border); line-height: 1.6; margin-bottom: 15px; }
+        .info-box h3 { color: var(--gold); margin-top: 0; }
+        
+        .bottom-bar { position: fixed; bottom: 0; width: 100%; background: rgba(10, 10, 10, 0.95); backdrop-filter: blur(10px); border-top: 1px solid var(--border); display: flex; padding: 10px 0; justify-content: space-around; z-index: 200; }
+        .nav-btn { color: var(--text-gray); text-decoration: none; font-size: 11px; text-align: center; flex: 1; cursor: pointer; background: none; border: none; }
+        .nav-btn.active { color: var(--gold); }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="logo-text">ELITE <span>STARS</span></div>
+        <div class="trust-tag">🛡️ منصة النخبة الموثوقة 100%</div>
+    </div>
+
+    <div class="tabs">
+        <div class="tab active" onclick="switchTab(event, 'stars')">النجوم ⭐</div>
+        <div class="tab" onclick="switchTab(event, 'premium')">البريميوم 💎</div>
+        <div class="tab" onclick="switchTab(event, 'about')">من نحن ✨</div>
+    </div>
+
+    <div id="stars" class="content-section active">
+        <div class="elite-card" onclick="buy('50 Stars', '400 DA')">
+            <div class="card-info"><div class="card-icon">⭐</div><div class="card-details"><span class="title">50 نجمة</span><span class="sub">بداية الشحن</span></div></div>
+            <div class="price-tag"><span class="price">400 DA</span><button class="buy-btn">شراء</button></div>
+        </div>
+        <div class="elite-card" onclick="buy('100 Stars', '780 DA')">
+            <div class="card-info"><div class="card-icon">⭐</div><div class="card-details"><span class="title">100 نجمة</span><span class="sub">توفير 5%</span></div></div>
+            <div class="price-tag"><span class="price">780 DA</span><button class="buy-btn">شراء</button></div>
         </div>
         <div class="elite-card" onclick="buy('175 Stars', '1400 DA')">
-            <div class="card-info"><div class="card-icon">⭐</div><div class="card-details"><span class="title">175 نجمة</span><span class="sub">الأكثر مبيعاً</span></div></div>
-            <div class="price-tag"><span class="price">1400 DA</span><span class="buy-btn">شراء</span></div>
-        </div>
-        <div class="elite-card" onclick="buy('250 Stars', '1950 DA')">
-            <div class="card-info"><div class="card-icon">⭐</div><div class="card-details"><span class="title">250 نجمة</span><span class="sub">باقة النخبة</span></div></div>
-            <div class="price-tag"><span class="price">1950 DA</span><span class="buy-btn">شراء</span></div>
-        </div>
-        <div class="elite-card" onclick="buy('1000 Stars', '7400 DA')">
-            <div class="card-info"><div class="card-icon">🔥</div><div class="card-details"><span class="title">1000 نجمة</span><span class="sub">عرض الملوك</span></div></div>
-            <div class="price-tag"><span class="price">7400 DA</span><span class="buy-btn">شراء</span></div>
-        </div>
-        <div class="elite-card" onclick="buy('5000 Stars', '35000 DA')">
-            <div class="card-info"><div class="card-icon">👑</div><div class="card-details"><span class="title">5000 نجمة</span><span class="sub">VIP MAX</span></div></div>
-            <div class="price-tag"><span class="price">35000 DA</span><span class="buy-btn">شراء</span></div>
+            <div class="card-info"><div class="card-icon">⭐</div><div class="card-details"><span class="title">175 نجمة</span><span class="sub">الأكثر مبيلاً</span></div></div>
+            <div class="price-tag"><span class="price">1400 DA</span><button class="buy-btn">شراء</button></div>
         </div>
     </div>
 
     <div id="premium" class="content-section">
         <div class="elite-card" onclick="buy('Premium 3M', '3800 DA')">
-            <div class="card-info"><div class="card-icon">💎</div><div class="card-details"><span class="title">بريميوم 3 أشهر</span><span class="sub">تفعيل رسمي بالهدية</span></div></div>
-            <div class="price-tag"><span class="price">3800 DA</span><span class="buy-btn">حجز</span></div>
-        </div>
-        <div class="elite-card" onclick="buy('Premium 6M', '5800 DA')">
-            <div class="card-info"><div class="card-icon">💎</div><div class="card-details"><span class="title">بريميوم 6 أشهر</span><span class="sub">عرض التوفير</span></div></div>
-            <div class="price-tag"><span class="price">5800 DA</span><span class="buy-btn">حجز</span></div>
-        </div>
-        <div class="elite-card" onclick="buy('Premium 1 Year', '8900 DA')">
-            <div class="card-info"><div class="card-icon">👑</div><div class="card-details"><span class="title">بريميوم سنة</span><span class="sub">أفضل قيمة للسعر</span></div></div>
-            <div class="price-tag"><span class="price">8900 DA</span><span class="buy-btn">حجز</span></div>
-        </div>
-        
-        <div class="info-box" style="margin-top: 20px;">
-            <h3>💎 مميزات البريميوم</h3>
-            <div class="feature-item">⭐ شارة النجمة بجانب اسمك</div>
-            <div class="feature-item">🚀 سرعة تحميل مضاعفة</div>
-            <div class="feature-item">📁 رفع ملفات حتى 4 جيجابايت</div>
-            <div class="feature-item">✨ رموز تعبيرية مخصصة</div>
-            <div class="feature-item">🔇 تحويل الصوت إلى نص</div>
+            <div class="card-info"><div class="card-icon">💎</div><div class="card-details"><span class="title">بريميوم 3 أشهر</span><span class="sub">تفعيل رسمي</span></div></div>
+            <div class="price-tag"><span class="price">3800 DA</span><button class="buy-btn">حجز</button></div>
         </div>
     </div>
 
     <div id="about" class="content-section">
         <div class="info-box">
             <h3>✨ ما هي إليت ستار؟</h3>
-            <p><b>Elite Stars</b> هي منصة جزائرية متخصصة في توفير خدمات التليجرام (نجوم واشتراكات) بأفضل الأسعار وأعلى معايير الأمان.</p>
-            <div class="feature-item">✅ شحن رسمي وقانوني</div>
-            <div class="feature-item">⚡ تسليم خلال دقائق</div>
-            <div class="feature-item">🛡️ ضمان كامل على كل عملية</div>
+            <p>منصة جزائرية شحن رسمي ومضمون 100%.</p>
         </div>
     </div>
 
@@ -71,16 +100,17 @@
             tabs = document.getElementsByClassName("tab");
             for (i = 0; i < tabs.length; i++) { tabs[i].classList.remove("active"); }
             document.getElementById(tabName).classList.add("active");
-            evt.currentTarget.classList.add("active");
+            if (evt) evt.currentTarget.classList.add("active");
         }
 
         function buy(name, price) {
             tg.HapticFeedback.impactOccurred('heavy');
-            tg.sendData(JSON.stringify({offer: name + " | " + price}));
+            tg.sendData(JSON.stringify({offer: name, price: price}));
+            tg.showAlert("✅ تم استلام طلبك لـ (" + name + ").\nسيتم تأكيد طلبك خلال 15 دقيقة.");
         }
 
         function openSupport() {
-            tg.sendData(JSON.stringify({action: 'support_request'}));
+            tg.openTelegramLink('https://t.me/wuldc');
         }
     </script>
 </body>
